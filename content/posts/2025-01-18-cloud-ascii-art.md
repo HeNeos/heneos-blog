@@ -1,6 +1,6 @@
 ---
 title: "Ascii Art"
-description: "Exploring advanced Markdown, LaTeX, and code features"
+description: "Implement a non-naive ascii art"
 tags: ["cloud", "image-processing"]
 date: "2025-01-18"
 ---
