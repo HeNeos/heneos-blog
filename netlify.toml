@@ -1,0 +1,17 @@
+[build]
+  command = "CI=false next build --no-lint"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NEXT_TELEMETRY_DISABLED = "1"
+  NEXT_IGNORE_TYPE_CHECK = "true"
+  SKIP_TYPESCRIPT = "true"
+
+[images]
+  remote_images = ["https://images.unsplash.com/*"]
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

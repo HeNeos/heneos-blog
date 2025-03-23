@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 7%;
+  --foreground: 0 0% 98%;
+
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+
+  --popover: 0 0% 9.8%;
+  --popover-foreground: 0 0% 98%;
+
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+
+  --card: 0 0% 9.8%;
+  --card-foreground: 0 0% 98%;
+
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+
+  --accent: 57 100% 51%;
+  --accent-foreground: 0 0% 9%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+
+  --ring: 0 0% 14.9%;
+
+  --radius: 0.5rem;
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground font-mono;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+pre, code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.line-numbers {
+  counter-reset: line;
+}
+
+.line-numbers > div {
+  counter-increment: line;
+}
+
+.line-numbers > div::before {
+  content: counter(line);
+  display: inline-block;
+  width: 2rem;
+  padding-right: 1rem;
+  text-align: right;
+  color: rgb(115, 115, 115);
+}
