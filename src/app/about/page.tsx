@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       <div className="border border-zinc-800 rounded-sm p-8 bg-zinc-900/30">
         <h1 className="text-4xl font-bold mb-6 border-b border-zinc-800 pb-4">About Me</h1>
 
@@ -18,6 +18,20 @@ export default function AboutPage() {
             <p className="text-zinc-300">
               Welcome to my blog! I'm a passionate developer with interests in distributed systems,
               cloud security, algorithms & data structures, and technology in general.
+            </p>
+          </div>
+
+          <div className="flex items-start my-4">
+            <span className="text-zinc-500 mr-2 select-none"></span>
+            <p className="text-zinc-300">
+              I used to be a competitive programmer in my college days and still have fun doing that in my barely free time.
+            </p>
+          </div>
+
+          <div className="flex items-start my-4">
+            <span className="text-zinc-500 mr-2 select-none"></span>
+            <p className="text-zinc-300">
+              I'm currently the top 2 solver of my country in Project Euler.
             </p>
           </div>
 

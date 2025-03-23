@@ -32,7 +32,7 @@ export default function HomePage() {
           <div className="flex items-start my-4">
             <span className="text-zinc-500 mr-2 select-none"></span>
             <p className="text-zinc-300">
-              I'm interested on distributed systems, cloud, security, algorithms and data structures.
+              I'm interested on distributed systems, cloud, cyber security, algorithms and data structures.
             </p>
           </div>
 

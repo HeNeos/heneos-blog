@@ -37,7 +37,7 @@ export default function RootLayout({
               </p>
             </div>
 
-            <div className="flex justify-center space-x-6 mb-4">
+            <div className="flex justify-center space-x-12 mb-4">
               <Link href="https://github.com/HeNeos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
                 GH
               </Link>
@@ -46,6 +46,12 @@ export default function RootLayout({
               </Link>
               <Link href="https://www.linkedin.com/in/heneos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
                 LI
+              </Link>
+              <Link href="https://codeforces.com/profile/HeNeos" className="text-zinc-500 hover:text-zinc-300">
+                CF
+              </Link>
+              <Link href="https://codeforces.com/profile/Ptolemy_314" className="text-zinc-500 hover:text-zinc-300">
+                CF (old)
               </Link>
               <Link href="mailto:he.neos@outlook.com" className="text-zinc-500 hover:text-zinc-300">
                 EM
