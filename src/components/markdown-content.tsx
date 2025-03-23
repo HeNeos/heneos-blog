@@ -20,15 +20,17 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
         components={{
           img: ({ node, ...props }) => {
             // Check if the src is a URL or a local path
-            const src = props.src || '';
+            const {src, alt, width, height, ...rest} = props;
 
             // For all images, use an img tag for static export
             return (
-              <div className="relative w-full h-64 md:h-96 my-8 rounded-sm overflow-hidden border border-zinc-800">
+              <div className="image-container my-8">
                 <img
-                  src={src}
-                  alt={props.alt || ''}
-                  className="object-cover w-full h-full"
+                  src={src || ''}
+                  alt={alt || ''}
+                  width={width || '100%'}
+                  height={height || 'auto'}
+                  className="object-contain mx-auto"
                 />
               </div>
             );
