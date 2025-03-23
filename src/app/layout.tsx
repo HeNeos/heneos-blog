@@ -4,12 +4,12 @@ import Link from "next/link";
 import 'katex/dist/katex.min.css';
 
 export const metadata: Metadata = {
-  title: "DEVELOPER BLOG",
+  title: "HeNeos blog",
   description: "A programming blog with Markdown, LaTeX, and code snippets",
 };
 
 const NavLink = ({ href, children, shortcut }: { href: string; children: React.ReactNode; shortcut: string }) => (
-  <div className="cursor-pointer hover:bg-yellow-400 hover:text-zinc-900 transition-colors px-4 py-2 rounded-md flex items-center justify-between">
+  <div className="cursor-pointer hover:bg-blue-400 hover:text-zinc-900 transition-colors px-4 py-2 rounded-md flex items-center justify-between">
     <span>{children}</span>
     <span className="text-zinc-500 ml-6">{shortcut}</span>
   </div>
@@ -27,10 +27,10 @@ export default function RootLayout({
           <div className="max-w-6xl mx-auto">
             <div className="mb-10">
               <h1 className="text-4xl font-bold tracking-tighter mb-4 text-center">
-                DEVELOPER BLOG
+                HeNeos blog
               </h1>
               <p className="text-center text-zinc-500 mb-2">
-                HeNeos @ Example Corp
+                Josue H. @ JP Morgan Chase
               </p>
               <p className="text-center text-zinc-600">
                 HeNeos
@@ -38,16 +38,16 @@ export default function RootLayout({
             </div>
 
             <div className="flex justify-center space-x-6 mb-4">
-              <Link href="https://github.com" target="_blank" className="text-zinc-500 hover:text-zinc-300">
+              <Link href="https://github.com/HeNeos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
                 GH
               </Link>
-              <Link href="https://twitter.com" target="_blank" className="text-zinc-500 hover:text-zinc-300">
+              <Link href="https://x.com/_HeNeos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
                 TW
               </Link>
-              <Link href="https://linkedin.com" target="_blank" className="text-zinc-500 hover:text-zinc-300">
+              <Link href="https://www.linkedin.com/in/heneos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
                 LI
               </Link>
-              <Link href="mailto:example@example.com" className="text-zinc-500 hover:text-zinc-300">
+              <Link href="mailto:he.neos@outlook.com" className="text-zinc-500 hover:text-zinc-300">
                 EM
               </Link>
             </div>
@@ -72,7 +72,7 @@ export default function RootLayout({
 
         <footer className="border-t border-zinc-800 py-6 mt-12">
           <div className="container mx-auto px-4 text-center text-zinc-500">
-            © {new Date().getFullYear()} Developer Blog. Built with Next.js, Markdown, and KaTeX.
+            © {new Date().getFullYear()} HeNeos blog. Built with Next.js, Markdown, and KaTeX.
           </div>
         </footer>
       </body>

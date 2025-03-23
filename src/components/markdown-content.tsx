@@ -41,7 +41,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           code: ({ node, inline, className, children, ...props }) => {
             if (inline) {
               return (
-                <code className="bg-zinc-800 text-yellow-400 px-1 py-0.5 rounded-sm font-mono" {...props}>
+                <code className="bg-zinc-800 text-blue-400 px-1 py-0.5 rounded-sm font-mono" {...props}>
                   {children}
                 </code>
               );
@@ -88,14 +88,14 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             </li>
           ),
           blockquote: ({ node, ...props }) => (
-            <blockquote className="border-l-4 border-yellow-400 pl-4 italic text-zinc-400 my-4">
+            <blockquote className="border-l-4 border-blue-400 pl-4 italic text-zinc-400 my-4">
               {props.children}
             </blockquote>
           ),
           a: ({ node, ...props }) => (
             <a
               href={props.href}
-              className="text-yellow-400 hover:underline"
+              className="text-blue-400 hover:underline"
               target={props.href?.startsWith('http') ? '_blank' : undefined}
               rel={props.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
             >

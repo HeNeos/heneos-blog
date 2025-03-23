@@ -21,7 +21,7 @@ export function generateMetadata({ params }: Props): Metadata {
   const post = getPostBySlug(params.slug);
 
   return {
-    title: `${post.title} | Developer Blog`,
+    title: `${post.title} | HeNeos blog`,
     description: post.description,
   };
 }
@@ -31,7 +31,7 @@ export default function BlogPostPage({ params }: Props) {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <Link href="/blog" className="text-zinc-500 hover:text-yellow-400 mb-6 inline-block">
+      <Link href="/blog" className="text-zinc-500 hover:text-blue-400 mb-6 inline-block">
         ← Back to all posts
       </Link>
 

@@ -20,7 +20,7 @@ export default function BlogPage() {
               </div>
               <div className="flex-1">
                 <Link href={`/blog/${post.slug}`}>
-                  <h2 className="text-2xl font-bold mb-2 hover:text-yellow-400 transition-colors">
+                  <h2 className="text-2xl font-bold mb-2 hover:text-blue-400 transition-colors">
                     {post.title}
                   </h2>
                 </Link>
