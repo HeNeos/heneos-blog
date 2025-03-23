@@ -43,13 +43,13 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           code: ({ node, inline, className, children, ...props }) => {
             if (inline) {
               return (
-                <code className="bg-zinc-800 text-blue-400 px-1 py-0.5 rounded-sm font-mono" {...props}>
+                <code className="bg-zinc-800 text-blue-400 px-1 py-0.5 rounded-sm font-mono text-sm" {...props}>
                   {children}
                 </code>
               );
             }
             return (
-              <code className={`${className} font-mono`} {...props}>
+              <code className={`${className} font-mono text-sm whitespace-pre-wrap break-words overflow-x-auto max-w-full`} {...props}>
                 {children}
               </code>
             );
