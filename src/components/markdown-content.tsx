@@ -49,7 +49,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
               );
             }
             return (
-              <code className={`${className} font-mono text-sm whitespace-pre-wrap break-words overflow-x-auto max-w-full`} {...props}>
+              <code className={`${className} font-mono`} {...props}>
                 {children}
               </code>
             );
@@ -105,8 +105,11 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             </a>
           ),
           table: ({ node, ...props }) => (
-            <div className="overflow-x-auto my-6">
-              <table className="min-w-full divide-y divide-zinc-800 border border-zinc-800 rounded-sm">
+            <div
+              className="overflow-x-auto my-6"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
+              <table className="min-w-max divide-y divide-zinc-800 border border-zinc-800 rounded-sm">
                 {props.children}
               </table>
             </div>

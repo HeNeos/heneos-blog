@@ -108,6 +108,7 @@ module.exports = {
             pre: {
               color: 'inherit',
               backgroundColor: 'rgb(0 0 0 / 0.2)',
+              overflowX: "auto",
             },
             blockquote: {
               color: 'inherit',

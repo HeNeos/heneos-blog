@@ -58,7 +58,7 @@ export default function BlogPostPage({ params }: Props) {
           </div>
         </header>
 
-        <div className="flex gap-4 mt-8">
+        <div className="gap-4 mt-8">
           <MarkdownContent content={post.content} />
         </div>
       </article>
