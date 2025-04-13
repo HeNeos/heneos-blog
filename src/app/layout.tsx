@@ -37,21 +37,12 @@ export default function RootLayout({
               </p>
             </div>
 
-            <div className="flex justify-center space-x-10 mb-4">
+            <div className="flex justify-center space-x-12 mb-4">
               <Link href="https://github.com/HeNeos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
                 GH
               </Link>
-              <Link href="https://x.com/_HeNeos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
-                TW
-              </Link>
               <Link href="https://www.linkedin.com/in/heneos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
                 LI
-              </Link>
-              <Link href="https://codeforces.com/profile/HeNeos" className="text-zinc-500 hover:text-zinc-300">
-                CF
-              </Link>
-              <Link href="https://codeforces.com/profile/Ptolemy_314" className="text-zinc-500 hover:text-zinc-300">
-                CF old
               </Link>
               <Link href="mailto:he.neos@outlook.com" className="text-zinc-500 hover:text-zinc-300">
                 EM
@@ -76,27 +67,60 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="border-t border-zinc-800 py-6 mt-12">
-          <div className="container mx-auto px-4 relative h-full">
-            <div className="flex items-center justify-between">
-              <div className="flex-shrink-0" style={{ maxWidth: '20%' }}>
-                <a href="https://projecteuler.net/profile/HeNeos.png" target="_blank" rel="noopener noreferrer">
-                  <img
-                    src="https://projecteuler.net/profile/HeNeos.png"
-                    alt="Project Euler Profile"
-                    className="w-full h-auto max-h-12 border border-zinc-700 rounded-sm object-contain"
-                  />
-                </a>
-              </div>
+          <footer className="border-t border-zinc-800 py-6 mt-12">
+            <div className="container mx-auto px-4 relative h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-4">Connect</h3>
+                  <div className="flex space-x-4">
+                    <a
+                      href="https://github.com/HeNeos"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-white transition-colors"
+                    >
+                      GitHub
+                    </a>
+                    <a
+                      href="https://x.com/_HeNeos"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-white transition-colors"
+                    >
+                      X
+                    </a>
+                    <a
+                      href="https://codeforces.com/profile/HeNeos"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-white transition-colors"
+                    >
+                      Codeforces
+                    </a>
+                    <a
+                      href="https://codeforces.com/profile/Ptolemy_314"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-white transition-colors"
+                    >
+                      Codeforces old
+                    </a>
+                  </div>
+                </div>
 
-              <div className="absolute left-1/2 -translate-x-1/2">
-                <p className="text-zinc-500 text-sm sm:text-base">
-                  © {new Date().getFullYear()} HeNeos Blog. Built with Next.js, Markdown, and KaTeX.
-                </p>
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-4">Project Euler</h4>
+                  <a href="https://projecteuler.net/profile/HeNeos.png" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src="https://projecteuler.net/profile/HeNeos.png"
+                      alt="Project Euler Profile"
+                      className=" h-auto max-h-10 rounded-sm object-contain"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </footer>
+          </footer>
       </body>
     </html>
   );

@@ -108,7 +108,7 @@ pre code::-webkit-scrollbar-thumb:hover {
 
 @media (max-width: 640px) {
   body {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
   .container {
     padding-left: 0.75rem;
