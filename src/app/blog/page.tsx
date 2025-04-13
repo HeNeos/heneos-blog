@@ -12,7 +12,7 @@ export default function BlogPage() {
         {posts.map((post, index) => (
           <article
             key={post.slug}
-            className="border border-zinc-800 rounded-lg p-6 hover:bg-zinc-900/50 transition-colors"
+            className="border border-zinc-800 rounded-lg p-6 card-hover hover:bg-zinc-900/50 backdrop-blur-sm transition-colors"
           >
             <div className="flex items-start">
               <div className="text-zinc-500 font-mono mr-4 pt-1 select-none">

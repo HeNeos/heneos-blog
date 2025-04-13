@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const NavLink = ({ href, children, shortcut }: { href: string; children: React.ReactNode; shortcut: string }) => (
-  <div className="cursor-pointer hover:bg-blue-400 hover:text-zinc-900 transition-colors px-4 py-2 rounded-md flex items-center justify-between">
+  <div className="cursor-pointer hover:bg-gray-200 hover:text-zinc-900 transition-colors px-4 py-2 rounded-md flex items-center justify-between">
     <span>{children}</span>
     <span className="text-zinc-500 ml-6">{shortcut}</span>
   </div>
@@ -38,13 +38,13 @@ export default function RootLayout({
             </div>
 
             <div className="flex justify-center space-x-12 mb-4">
-              <Link href="https://github.com/HeNeos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
+              <Link href="https://github.com/HeNeos" target="_blank" className="text-zinc-500 hover:text-accent animated-underline">
                 GH
               </Link>
-              <Link href="https://www.linkedin.com/in/heneos" target="_blank" className="text-zinc-500 hover:text-zinc-300">
+              <Link href="https://www.linkedin.com/in/heneos" target="_blank" className="text-zinc-500 hover:text-accent animated-underline">
                 LI
               </Link>
-              <Link href="mailto:he.neos@outlook.com" className="text-zinc-500 hover:text-zinc-300">
+              <Link href="mailto:he.neos@outlook.com" className="text-zinc-500 hover:text-accent animated-underline">
                 EM
               </Link>
             </div>

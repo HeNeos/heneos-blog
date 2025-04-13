@@ -10,7 +10,7 @@ export default function HomePage() {
         <div className="line-numbers">
           <div className="flex items-start my-4">
             <span className="text-zinc-500 mr-2 select-none"></span>
-            <h1 className="text-3xl font-bold text-zinc-100">
+            <h1 className="text-3xl font-bold gradient-text">
               Hi, I'm HeNeos
             </h1>
           </div>
@@ -56,14 +56,14 @@ export default function HomePage() {
       <section>
         <div className="flex justify-between items-center mb-8 border-b border-zinc-800 pb-4">
           <h2 className="text-2xl font-bold">Recent Posts</h2>
-          <Link href="/blog" className="text-zinc-500 hover:text-blue-400">
+          <Link href="/blog" className="text-zinc-500 hover:text-accent animated-underline">
             View all →
           </Link>
         </div>
 
         <div className="space-y-6">
           {posts.map((post, index) => (
-            <article key={post.slug} className="border border-zinc-800 rounded-sm p-6 hover:bg-zinc-900/50 transition-colors">
+            <article key={post.slug} className="border border-zinc-800 rounded-sm p-6 card-hover bg-card/40 backdrop-blur-sm">
               <div className="flex items-start">
                 <div className="text-zinc-500 font-mono mr-4 pt-1 select-none">
                   {String(index + 1).padStart(2, '0')}
