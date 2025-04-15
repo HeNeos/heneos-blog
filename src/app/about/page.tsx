@@ -16,7 +16,7 @@ export default function AboutPage() {
           <div className="flex items-start my-4">
             <span className="text-zinc-500 mr-2 select-none"></span>
             <p className="text-zinc-300">
-              Welcome to my blog! I'm a passionate developer with interests in distributed systems,
+              Welcome to my blog! I'm an engineer with interests in distributed systems,
               cloud security, algorithms & data structures, and technology in general.
             </p>
           </div>

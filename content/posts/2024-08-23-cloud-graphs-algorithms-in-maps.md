@@ -305,24 +305,23 @@ I've explained in general terms how this project was built, however there are ma
 
 | Place | Dijkstra | A* |
 |-------|----------|----|
-| Milan | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/dijkstra-path_Milan.png" width="450px"> | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star-path_Milan.png" width="450px"> |
-| Munich | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/dijkstra-path_Munich.png" width="450px"> | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star-path_Munich.png" width="450px"> |
-| Paris | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/dijkstra-path_Paris.png" width="450px"> | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star-path_Paris.png" width="450px"> |
+| Milan | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/dijkstra-path_Milan.png" width="400px"> | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star-path_Milan.png" width="400px"> |
+| Munich | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/dijkstra-path_Munich.png" width="400px"> | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star-path_Munich.png" width="400px"> |
+| Paris | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/dijkstra-path_Paris.png" width="400px"> | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star-path_Paris.png" width="400px"> |
 
 Compare it with my modified version :)
 
 | Place | A* enhanced |
 |-------|-------------|
-| Milan | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star_enhanced-path_Milan.png" width="500px"> |
-| Munich | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star_enhanced-path_Munich.png" width="500px"> |
-| Paris | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star_enhanced-path_Paris.png" width="500px"> |
+| Milan | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star_enhanced-path_Milan.png" width="400px"> |
+| Munich | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star_enhanced-path_Munich.png" width="400px"> |
+| Paris | <img src="https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/cloud/graphs_algorithms_in_maps/a_star_enhanced-path_Paris.png" width="400px"> |
 
 You can try it running:
 
 
 ```
-curl -i "https://u4buvcwtvp4miopkjjqadffazq0zjric.lambda-url.us-east-1.on.aws/\
-?source=Paris,%20Gros-Caillou&dest=Paris,%20Charonne&algorithm=a_star_enhanced"
+curl -i "https://u4buvcwtvp4miopkjjqadffazq0zjric.lambda-url.us-east-1.on.aws/?source=Paris,%20Gros-Caillou&dest=Paris,%20Charonne&algorithm=a_star_enhanced"
 ```
 
 It could takes a few seconds or minutes depending how big is the map and if the lambda is already warm.

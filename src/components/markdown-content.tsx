@@ -36,41 +36,41 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             );
           },
           pre: ({ node, ...props }) => (
-            <pre className="rounded-sm p-4 overflow-auto bg-zinc-900 text-zinc-100 my-4 border border-zinc-800 font-mono text-sm">
+            <pre className="rounded-sm p-4 overflow-auto bg-zinc-900 text-zinc-100 my-4 border border-zinc-800">
               {props.children}
             </pre>
           ),
           code: ({ node, inline, className, children, ...props }) => {
-            if (inline) {
+            if (className === undefined) { // TODO: Fix to proper check inline code
               return (
-                <code className="bg-zinc-800 text-blue-400 px-1 py-0.5 rounded-sm font-mono text-sm" {...props}>
+                <code className="bg-zinc-900 text-blue-600 px-1 py-0.5 rounded-sm text-xs" {...props}>
                   {children}
                 </code>
               );
             }
             return (
-              <code className={`${className} font-mono`} {...props}>
+              <code className={`${className} text-xs`} {...props}>
                 {children}
               </code>
             );
           },
           p: ({ node, ...props }) => (
-            <p className="text-zinc-300 my-4 leading-relaxed">
+            <p className="text-sm text-zinc-300 my-4 leading-relaxed">
               {props.children}
             </p>
           ),
           h1: ({ node, ...props }) => (
-            <h1 className="text-3xl font-bold my-6 text-zinc-100 border-b border-zinc-800 pb-2">
+            <h1 className="text-2xl font-bold my-6 text-zinc-100 border-b border-zinc-800 pb-2">
               {props.children}
             </h1>
           ),
           h2: ({ node, ...props }) => (
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-zinc-100 border-b border-zinc-800 pb-2">
+            <h2 className="text-xl font-bold mt-8 mb-4 text-zinc-100 border-b border-zinc-800 pb-2">
               {props.children}
             </h2>
           ),
           h3: ({ node, ...props }) => (
-            <h3 className="text-xl font-bold mt-6 mb-3 text-zinc-100">
+            <h3 className="text-lg font-bold mt-6 mb-3 text-zinc-100">
               {props.children}
             </h3>
           ),
@@ -80,7 +80,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             </ul>
           ),
           ol: ({ node, ...props }) => (
-            <ol className="list-decimal pl-6 my-4 text-zinc-300 space-y-2">
+            <ol className="text-xs list-decimal pl-6 my-4 text-zinc-300 space-y-2">
               {props.children}
             </ol>
           ),
@@ -106,7 +106,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           ),
           table: ({ node, ...props }) => (
             <div
-              className="overflow-x-auto my-6"
+              className="overflow-x-auto"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
               <table className="min-w-max divide-y divide-zinc-800 border border-zinc-800 rounded-sm">
@@ -115,12 +115,12 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             </div>
           ),
           th: ({ node, ...props }) => (
-            <th className="px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase tracking-wider bg-zinc-900 border-b border-zinc-800">
+            <th className="text-sm px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase tracking-wider bg-zinc-900 border-b border-zinc-800">
               {props.children}
             </th>
           ),
           td: ({ node, ...props }) => (
-            <td className="px-4 py-3 whitespace-nowrap text-zinc-300 border-b border-zinc-800">
+            <td className="text-sm px-4 py-3 whitespace-nowrap text-zinc-300 border-b border-zinc-800">
               {props.children}
             </td>
           ),

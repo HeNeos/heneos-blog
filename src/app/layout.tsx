@@ -37,15 +37,15 @@ export default function RootLayout({
               </p>
             </div>
 
-            <div className="flex justify-center space-x-12 mb-4">
+            <div className="flex justify-center space-x-20 mb-4">
               <Link href="https://github.com/HeNeos" target="_blank" className="text-zinc-500 hover:text-accent animated-underline">
-                GH
+                GitHub
               </Link>
               <Link href="https://www.linkedin.com/in/heneos" target="_blank" className="text-zinc-500 hover:text-accent animated-underline">
-                LI
+                LinkedIn
               </Link>
               <Link href="mailto:he.neos@outlook.com" className="text-zinc-500 hover:text-accent animated-underline">
-                EM
+                Email
               </Link>
             </div>
 
@@ -63,7 +63,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-8 max-w-6xl">
+        <main className="container mx-auto px-4 py-8 max-w-5xl">
           {children}
         </main>
 

@@ -60,6 +60,7 @@ pre, code {
   overflow-y: hidden;
   padding: 0.5rem 0;
   margin: 1rem -1rem !important;
+  font-size: 16px;
 }
 
 .katex-display > .katex {
@@ -105,12 +106,6 @@ pre code::-webkit-scrollbar-thumb:hover {
   padding: 0.8rem;
 }
 
-.prose table {
-  display: block;
-  overflow-x: auto;
-  font-size: 1rem;
-}
-
 @media (max-width: 640px) {
   body {
     font-size: 0.8rem;
@@ -133,9 +128,8 @@ pre code::-webkit-scrollbar-thumb:hover {
     padding-right: 0.5rem;
     border-radius: 0;
   }
-  pre,
-  code {
-    font-size: 0.5rem;
+  .katex-display {
+    font-size: 14px;
   }
 }
 
