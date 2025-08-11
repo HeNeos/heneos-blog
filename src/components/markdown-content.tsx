@@ -55,7 +55,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             );
           },
           p: ({ node, ...props }) => (
-            <p className="text-sm text-zinc-300 my-4 leading-relaxed">
+            <p className="text-base text-zinc-300 my-4 leading-relaxed">
               {props.children}
             </p>
           ),
@@ -80,7 +80,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             </ul>
           ),
           ol: ({ node, ...props }) => (
-            <ol className="text-xs list-decimal pl-6 my-4 text-zinc-300 space-y-2">
+            <ol className="text-sm list-decimal pl-6 my-4 text-zinc-300 space-y-2">
               {props.children}
             </ol>
           ),
@@ -115,7 +115,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             </div>
           ),
           th: ({ node, ...props }) => (
-            <th className="text-sm px-4 py-3 text-left text-xs font-medium text-zinc-400 uppercase tracking-wider bg-zinc-900 border-b border-zinc-800">
+            <th className="text-sm px-4 py-3 text-left font-medium text-zinc-400 uppercase tracking-wider bg-zinc-900 border-b border-zinc-800">
               {props.children}
             </th>
           ),
