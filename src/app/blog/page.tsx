@@ -6,7 +6,7 @@ export default function BlogPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-10 text-center">Blog Posts</h1>
+      <h1 className="text-5xl font-raleway mb-10 text-center">Blog Posts</h1>
 
       <div className="space-y-6">
         {posts.map((post, index) => (
@@ -20,7 +20,7 @@ export default function BlogPage() {
               </div>
               <div className="flex-1">
                 <Link href={`/blog/${post.slug}`}>
-                  <h2 className="text-2xl font-bold mb-2 hover:text-blue-400 transition-colors">
+                  <h2 className="text-3xl font-raleway mb-2 hover:text-blue-400 transition-colors">
                     {post.title}
                   </h2>
                 </Link>

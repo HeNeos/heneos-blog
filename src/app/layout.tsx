@@ -26,30 +26,30 @@ export default function RootLayout({
         <header className="p-6 border-b border-zinc-800">
           <div className="max-w-6xl mx-auto">
             <div className="mb-10">
-              <h1 className="text-4xl font-bold tracking-tighter mb-4 text-center">
+              <h1 className="text-6xl font-raleway tracking-tighter mb-2 text-center">
                 HeNeos blog
               </h1>
-              <p className="text-center text-zinc-500 mb-2">
+              <p className="text-xl font-mono text-center text-zinc-500 mb-1">
                 Josue H. @ JP Morgan Chase
               </p>
-              <p className="text-center text-zinc-600">
+              <p className="text-xl font-raleway text-center text-zinc-600">
                 HeNeos
               </p>
             </div>
 
             <div className="flex justify-center space-x-20 mb-4">
-              <Link href="https://github.com/HeNeos" target="_blank" className="text-zinc-500 hover:text-accent animated-underline">
+              <Link href="https://github.com/HeNeos" target="_blank" className="text-base font-raleway text-zinc-500 hover:text-accent animated-underline">
                 GitHub
               </Link>
-              <Link href="https://www.linkedin.com/in/heneos" target="_blank" className="text-zinc-500 hover:text-accent animated-underline">
+              <Link href="https://www.linkedin.com/in/heneos" target="_blank" className="text-base font-raleway text-zinc-500 hover:text-accent animated-underline">
                 LinkedIn
               </Link>
-              <Link href="mailto:he.neos@outlook.com" className="text-zinc-500 hover:text-accent animated-underline">
+              <Link href="mailto:he.neos@outlook.com" className="text-base font-raleway text-zinc-500 hover:text-accent animated-underline">
                 Email
               </Link>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4 border-t border-zinc-800 pt-4">
+            <div className="text-xl font-raleway flex flex-col sm:flex-row justify-center gap-4 border-t border-zinc-800 pt-4">
               <Link href="/">
                 <NavLink href="/" shortcut="ha">Home</NavLink>
               </Link>
