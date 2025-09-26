@@ -5,9 +5,11 @@ tags: ["cloud", "image-processing"]
 date: "2025-04-19"
 ---
 
+## Introduction
+
 It's been a long time since my last blog entry. I made a lot of progress on this and I finally feel satisfied with my architecture.
 
-In the last entry I explained how to implement an `ascii art` application, however that is the local version, this one is about how to design the same idea but to deploy it in cloud environments.
+In the last entry I've explained how to implement an `ascii art` application, however that is the local version, this one is about how to design the same idea but to deploy it in cloud environments.
 
 You can think that's pretty straightforward if you already have the code, you can just deploy a EC2 or using ECS/EKS with an image of the code, and *yes*, you're right... that's probably the easiest way to do, however, I can't confirm if that's the most **optimal**.
 
@@ -64,7 +66,7 @@ It looks fair simple, you can be tempted to do both steps in a single lambda, bu
 1. Resize the media.
 2. Process frames.
 
-Now it looks more like video, right? Actually both image and video are similar, and could be conceptualized as the same, the only issue is that video is computational more expensive, but we'll address that issue later.
+Now it looks more like video, right? Actually both image and video are similar, and could be conceptualized as the same, the only difference is that video is computational more expensive, but we'll address that issue later.
 
 It means, if we want to extend our architecture to video, it's better if we separate the steps in different lambdas. It also has another benefit that's we are gonna have less requirements for each lambda and then the image will be lighter, making that the lambda can initialize faster and we have a more specific way to provide memory and timeout limits for the lambdas.
 
@@ -307,3 +309,61 @@ resource "aws_sfn_state_machine" "step_function" {
   DEFINITION
 }
 ```
+
+## Improvements
+
+### Multistage docker images
+
+Lambda functions code are stored using `AWS ECR`, which has a free-tier of 500MB/month, which in my case is pretty low. However, a simple solution for this is to use a multistage docker images, they're able to decrease up to 50% of the original size.
+
+```dockerfile
+# Stage 1: Build stage
+FROM public.ecr.aws/lambda/provided:al2023 as builder
+
+RUN dnf update -y && \
+  dnf install -y \
+  python3.11 \
+  python3.11-pip \
+  python3.11-devel \
+  gcc \
+  cairo-devel \
+  wget \
+  xz \
+  tar \
+  && dnf clean all
+
+RUN wget https://github.com/HeNeos/ascii-art-aws/raw/refs/heads/dev/ffmpeg-release-arm64-static.tar.xz && \
+  tar -xf ffmpeg-release-arm64-static.tar.xz --strip-components=1 -C /usr/local/bin && \
+  rm ffmpeg-release-arm64-static.tar.xz
+
+COPY process_image/requirements.txt .
+RUN pip3.11 install --no-cache-dir --target /deps awslambdaric -r requirements.txt
+
+# Stage 2: Final image
+FROM public.ecr.aws/lambda/provided:al2023
+
+RUN dnf update -y && \
+  dnf install -y \
+  python3.11 \
+  cairo \
+  && dnf clean all
+
+COPY --from=builder /usr/local/bin/ffmpeg /usr/local/bin/ffmpeg
+COPY --from=builder /deps /usr/local/lib/python3.11/site-packages
+
+COPY __init__.py ./lambdas/
+COPY utils/*.py ./lambdas/utils/
+COPY models/*.py ./lambdas/models/
+COPY clients/*.py ./lambdas/clients/
+COPY process ./lambdas/process
+COPY process_image/lambda_function.py ./lambdas/process_image/lambda_function.py
+
+ENTRYPOINT ["python3.11", "-m", "awslambdaric"]
+CMD ["lambdas.process_image.lambda_function.lambda_handler"]
+```
+
+### Cloudflare resources
+
+In my way to minimize costs, I just found that Cloudflare R2 API is similar than the S3 one, and their price model is different than S3. Since, this application is not critical at all, and we delete images almost the next day that they were generated, we can easily replace the S3 buckets that stores the ascii art for R2 storage.
+
+Additional to that, we can use cloudflare workers to perform the polling operations to the API-GW of our lambda functions, since the cold start of these workers is almost zero, and they could work as a `cheap` load balancer too.
