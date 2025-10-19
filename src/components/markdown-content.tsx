@@ -18,6 +18,35 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
         remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeKatex, rehypeRaw, [rehypeHighlight, { detect: true }]]}
         components={{
+          source: ({ node, ...props }) => {
+            const { src, type, ...rest } = props;
+            return (
+              <source
+                src={src || ''}
+                type={type}
+                className="object-contain mx-auto"
+                {...rest}
+              />
+            );
+          },
+
+          video: ({ node, children, ...props }) => {
+            const { controls, width, height, ...rest } = props;
+            return (
+              <div className="video-container my-8 flex justify-center">
+                <video
+                  controls={controls ?? true}
+                  width={width || '100%'}
+                  height={height || 'auto'}
+                  className="object-contain mx-auto shadow-lg"
+                  {...rest}
+                >
+                  {children}
+                </video>
+              </div>
+            );
+          },
+
           img: ({ node, ...props }) => {
             // Check if the src is a URL or a local path
             const {src, alt, width, height, ...rest} = props;
