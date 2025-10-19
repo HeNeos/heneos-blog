@@ -6,31 +6,31 @@ export default function HomePage() {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <section className="mb-16 p-6 border border-zinc-800 rounded-sm bg-zinc-900/60">
+      <section className="mb-6 p-4 border border-zinc-800 rounded-sm bg-zinc-900/60">
         <div className="line-numbers">
-          <div className="flex items-start my-1">
-            <span className="text-zinc-500 mr-2 select-none"></span>
+          <div className="flex items-start">
+            <span className="text-zinc-500 select-none"></span>
             <h1 className="text-xl font-mono gradient-text">
               Hi, I'm HeNeos
             </h1>
           </div>
 
-          <div className="flex items-start my-1">
-            <span className="text-zinc-500 mr-2 select-none"></span>
+          <div className="flex items-start">
+            <span className="text-zinc-500 select-none"></span>
             <p className="text-sm font-mono text-zinc-300">
               I'm a Cloud Solutions Architect.
             </p>
           </div>
 
-          <div className="flex items-start my-1">
-            <span className="text-zinc-500 mr-2 select-none"></span>
+          <div className="flex items-start">
+            <span className="text-zinc-500 select-none"></span>
             <p className="text-sm font-mono text-zinc-300">
               I primarily use <span className="font-bold">Python</span>, <span className="font-bold">TypeScript</span>, <span className="font-bold">AWS</span>, and <span className="font-bold">Kubernetes</span>.
             </p>
           </div>
 
-          <div className="flex items-start my-1">
-            <span className="text-zinc-500 mr-2 select-none"></span>
+          <div className="flex items-start">
+            <span className="text-zinc-500 select-none"></span>
             <p className="text-sm font-mono text-zinc-300">
               I'm interested on distributed systems, cloud, cyber security, algorithms and data structures.
             </p>
@@ -53,7 +53,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="flex flex-col md:flex-row gap-8">
+      <section className="flex flex-col md:flex-row gap-4">
         <div className="p-2 flex-1">
           <h2 className="text-2xl font-raleway">Currently learning</h2>
             <div className="line-numbers">

@@ -35,7 +35,7 @@ export default function BlogPostPage({ params }: Props) {
         ← Back to all posts
       </Link>
 
-      <article className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/30">
+      <article className="container p-1 bg-zinc-900/30">
         <header className="mb-8 border-b border-zinc-800 pb-6">
           <h1 className="text-3xl font-bold mb-4 gradient-text">{post.title}</h1>
           <p className="text-zinc-500 mb-4 font-mono">

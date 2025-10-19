@@ -63,11 +63,11 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-8 max-w-5xl">
+        <main className="mx-auto px-4 py-6 max-w-5xl">
           {children}
         </main>
 
-          <footer className="border-t border-zinc-800 py-6 mt-12">
+          <footer className="border-t border-zinc-800 py-6 mt-2">
             <div className="container mx-auto px-4 relative h-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
