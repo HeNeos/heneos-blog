@@ -53,6 +53,51 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="flex flex-col md:flex-row gap-8">
+        <div className="p-2 flex-1">
+          <h2 className="text-2xl font-raleway">Currently learning</h2>
+            <div className="line-numbers">
+              <div className="flex items-start my-2">
+                <span className="text-zinc-500 mr-1 select-none"></span>
+                <p className="text-zinc-300">
+                    Rust
+                </p>
+              </div>
+              <div className="flex items-start my-2">
+                <span className="text-zinc-500 mr-1 select-none"></span>
+                <p className="text-zinc-300">
+                    OCaml
+                </p>
+              </div>
+            </div>
+        </div>
+
+        <div className="p-2 flex-1">
+          <h2 className="text-2xl font-raleway">Currently reading</h2>
+            <div className="line-numbers">
+              <div className="flex items-start my-2">
+                <span className="text-zinc-500 mr-1 select-none"></span>
+                <p className="text-zinc-300">
+                    Designing Data-Intensive Applications
+                </p>
+              </div>
+              <div className="flex items-start my-2">
+                <span className="text-zinc-500 mr-1 select-none"></span>
+                <p className="text-zinc-300">
+                    Zero Trust Networks
+                </p>
+              </div>
+              <div className="flex items-start my-2">
+                <span className="text-zinc-500 mr-1 select-none"></span>
+                <p className="text-zinc-300">
+                    Real-World Cryptography
+                </p>
+              </div>
+            </div>
+        </div>
+
+      </section>
+
       <section>
         <div className="flex justify-between items-center mb-8 border-b border-zinc-800 pb-4">
           <h2 className="text-4xl font-raleway">Recent Posts</h2>
