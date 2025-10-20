@@ -11,7 +11,6 @@ export default function AboutPage() {
     <div className="max-w-4xl mx-auto">
       <div className="border border-zinc-800 rounded-sm p-8 bg-zinc-900/30">
         <h1 className="text-4xl font-bold mb-6 border-b border-zinc-800 pb-4">About Me</h1>
-
         <div className="line-numbers">
           <div className="flex items-start my-4">
             <span className="text-zinc-500 mr-2 select-none"></span>
