@@ -59,6 +59,9 @@ export default function RootLayout({
               <Link href="/about">
                 <NavLink href="/about" shortcut="hc">About</NavLink>
               </Link>
+              <Link href="/devlog">
+                <NavLink href="/devlog" shortcut="hd">Dev Log</NavLink>
+              </Link>
             </div>
           </div>
         </header>
