@@ -3,6 +3,8 @@ import "./globals.css";
 import Link from "next/link";
 import 'katex/dist/katex.min.css';
 
+import Navigation from "@/components/Navigation";
+
 export const metadata: Metadata = {
   title: "HeNeos blog",
   description: "A programming blog with Markdown, LaTeX, and code snippets",
@@ -48,21 +50,8 @@ export default function RootLayout({
                 Email
               </Link>
             </div>
+            <Navigation />
 
-            <div className="text-xl font-raleway flex flex-col sm:flex-row justify-center gap-4 border-t border-zinc-800 pt-4">
-              <Link href="/">
-                <NavLink href="/" shortcut="ha">Home</NavLink>
-              </Link>
-              <Link href="/blog">
-                <NavLink href="/blog" shortcut="hb">Blog</NavLink>
-              </Link>
-              <Link href="/about">
-                <NavLink href="/about" shortcut="hc">About</NavLink>
-              </Link>
-              <Link href="/devlog">
-                <NavLink href="/devlog" shortcut="hd">Dev Log</NavLink>
-              </Link>
-            </div>
           </div>
         </header>
 
