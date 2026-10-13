@@ -1243,18 +1243,36 @@ main {
 .ascii-wrap {
   margin-top: 80px;
   padding-block: 32px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
   /* The ASCII flourish is ~70k glyphs; skip rendering it while it is
      off-screen so it never costs anything during normal scrolling. */
   content-visibility: auto;
   contain-intrinsic-size: auto 420px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.ascii-wrap::-webkit-scrollbar {
+  height: 6px;
+  background-color: transparent;
+}
+
+.ascii-wrap::-webkit-scrollbar-thumb {
+  background-color: var(--border-strong);
+  border-radius: 3px;
 }
 
 .ascii-wrap .ascii-art {
   opacity: 0.45;
   transition: opacity 0.4s ease;
+  font-size: clamp(0.32rem, 0.9vw, 0.5rem);
+  line-height: clamp(0.95, 1.2vw, 1.2);
+  width: max-content;
+  min-width: 100%;
 }
 
 .ascii-wrap:hover .ascii-art {
@@ -1580,6 +1598,42 @@ main {
   .post-card {
     gap: 16px;
     padding: 18px;
+  }
+
+  .ascii-wrap {
+    margin-top: 60px;
+    padding-block: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-link {
+    padding: 7px 10px;
+    font-size: 0.86rem;
+  }
+
+  .nav-link .key {
+    display: none;
+  }
+
+  .terminal-body {
+    padding: 20px 15px 18px;
+  }
+
+  .term-grid {
+    grid-template-columns: 4rem 1fr;
+    gap: 9px 12px;
+    font-size: 1.04rem;
+  }
+
+  .ascii-wrap {
+    margin-top: 48px;
+    padding-block: 20px;
+  }
+
+  .ascii-wrap .ascii-art {
+    font-size: 0.28rem;
+    line-height: 1.15;
   }
 }
 
