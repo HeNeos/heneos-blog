@@ -66,6 +66,7 @@ fn build_site() -> Nil {
   let ascii_art = read_file("static/ascii-art.html")
   reset_output("out")
   copy_file("static/styles.css", "out/styles.css")
+  copy_file("static/theme.css", "out/theme.css")
   copy_file("node_modules/katex/dist/katex.min.css", "out/katex.min.css")
   copy_file(
     "node_modules/highlight.js/styles/github-dark.css",
@@ -73,6 +74,7 @@ fn build_site() -> Nil {
   )
   copy_directory("node_modules/katex/dist/fonts", "out/fonts")
   copy_file("static/navigation.js", "out/navigation.js")
+  copy_file("static/enhance.js", "out/enhance.js")
   write_file("out/.nojekyll", "")
   write_file("out/index.html", render_home_page(posts, ascii_art))
   write_file("out/blog.html", render_blog_page(posts))
@@ -215,9 +217,7 @@ fn render_tags(tags: List(String)) -> String {
 }
 
 fn render_tag(tag: String) -> String {
-  "<span class=\"inline-block bg-zinc-800 text-zinc-300 px-2 py-1 text-xs rounded-sm\">#"
-  <> escape_html(tag)
-  <> "</span>"
+  "<span class=\"tag\">#" <> escape_html(tag) <> "</span>"
 }
 
 // ---------------------------------------------------------------------------
@@ -235,76 +235,77 @@ fn render_home_page(posts: List(Post), ascii_art: String) -> String {
 }
 
 fn home_content(posts: List(Post), ascii_art: String) -> String {
-  "<div class=\"max-w-5xl mx-auto\">"
-  <> "<section class=\"mb-6 p-4 border border-zinc-800 rounded-sm bg-zinc-900/60\">"
-  <> "<div class=\"line-numbers\">"
-  <> "<div class=\"flex items-start\"><span class=\"text-zinc-500 select-none\"></span><h1 class=\"text-xl font-mono gradient-text\">Hi, I&#x27;m HeNeos</h1></div>"
-  <> "<div class=\"flex items-start\"><span class=\"text-zinc-500 select-none\"></span><p class=\"text-sm font-mono text-zinc-300\">I&#x27;m a Cloud Solutions Architect.</p></div>"
-  <> "<div class=\"flex items-start\"><span class=\"text-zinc-500 select-none\"></span><p class=\"text-sm font-mono text-zinc-300\">I primarily use <span class=\"font-bold\">Python</span>, <span class=\"font-bold\">TypeScript</span>, <span class=\"font-bold\">AWS</span>, and <span class=\"font-bold\">Kubernetes</span>.</p></div>"
-  <> "<div class=\"flex items-start\"><span class=\"text-zinc-500 select-none\"></span><p class=\"text-sm font-mono text-zinc-300\">I&#x27;m interested on distributed systems, cloud, cyber security, algorithms and data structures.</p></div>"
-  <> "<div class=\"flex gap-2 mt-1\">"
-  <> "<a class=\"bg-zinc-800 hover:bg-blue-400 hover:text-zinc-900 text-zinc-100 px-4 py-2 rounded-sm transition-colors text-sm\" href=\""
+  "<div class=\"wrap\">"
+  <> "<section class=\"hero fade-up\">"
+  <> "<div class=\"terminal\">"
+  <> "<div class=\"terminal-bar\">"
+  <> "<span class=\"dot\"></span>"
+  <> "<span class=\"dot\"></span>"
+  <> "<span class=\"dot\"></span>"
+  <> "<span class=\"terminal-title\">heneos@nixos: ~</span>"
+  <> "</div>"
+  <> "<div class=\"terminal-body\">"
+  <> "<div class=\"term-grid\">"
+  <> "<span class=\"term-key\">name</span>"
+  <> "<span class=\"term-val\">Josue H. <span class=\"dim\">// HeNeos</span></span>"
+  <> "<span class=\"term-key\">role</span>"
+  <> "<span class=\"term-val\">Cloud Solutions Architect</span>"
+  <> "<span class=\"term-key\">focus</span>"
+  <> "<span class=\"term-val\">distributed systems <span class=\"sep\">·</span> cybersecurity</span>"
+  <> "<span class=\"term-key\">langs</span>"
+  <> "<span class=\"term-val\">Rust <span class=\"sep\">·</span> Idris <span class=\"sep\">·</span> Nix</span>"
+  <> "<span class=\"term-key\">now</span>"
+  <> "<span class=\"term-val\">functional programming, type-driven design</span>"
+  <> "</div>"
+  <> "<div class=\"term-prompt\"><span class=\"sig\">&#10095;</span><span class=\"cursor\"></span></div>"
+  <> "</div>"
+  <> "</div>"
+  <> "<div class=\"hero-actions\">"
+  <> "<a class=\"btn btn-primary\" href=\""
   <> base_path
-  <> "/blog\">Read Blog</a>"
-  <> "<a class=\"border border-zinc-700 hover:border-blue-400 text-zinc-300 hover:text-blue-400 px-4 py-2 rounded-sm transition-colors text-sm\" href=\""
+  <> "/blog\">read blog "
+  <> icon_arrow()
+  <> "</a>"
+  <> "<a class=\"btn btn-ghost\" href=\""
   <> base_path
-  <> "/about\">About Me</a>"
+  <> "/about\">about</a>"
+  <> "</div>"
+  <> "</section>"
+  <> "<section class=\"section\" data-reveal>"
+  <> "<div class=\"panels\">"
+  <> "<div class=\"panel\">"
+  <> "<h3>Currently learning</h3>"
+  <> "<ul class=\"list-index\">"
+  <> "<li><span class=\"n\">01</span><span>Idris</span></li>"
+  <> "<li><span class=\"n\">02</span><span>Nix</span></li>"
+  <> "<li><span class=\"n\">03</span><span>Rust</span></li>"
+  <> "</ul>"
+  <> "</div>"
+  <> "<div class=\"panel\">"
+  <> "<h3>Currently reading</h3>"
+  <> "<ul class=\"list-index\">"
+  <> "<li><span class=\"n\">01</span><span>Designing Data-Intensive Applications</span></li>"
+  <> "<li><span class=\"n\">02</span><span>Zero Trust Networks</span></li>"
+  <> "<li><span class=\"n\">03</span><span>Real-World Cryptography</span></li>"
+  <> "</ul>"
   <> "</div>"
   <> "</div>"
   <> "</section>"
-  <> "<section class=\"flex flex-col md:flex-row gap-4\">"
-  <> "<div class=\"p-2 flex-1\">"
-  <> "<h2 class=\"text-2xl font-raleway\">Currently learning</h2>"
-  <> "<div class=\"line-numbers\">"
-  <> "<div class=\"flex items-start my-2\"><span class=\"text-zinc-500 mr-1 select-none\"></span><p class=\"text-zinc-300\">Rust</p></div>"
-  <> "<div class=\"flex items-start my-2\"><span class=\"text-zinc-500 mr-1 select-none\"></span><p class=\"text-zinc-300\">OCaml</p></div>"
-  <> "</div>"
-  <> "</div>"
-  <> "<div class=\"p-2 flex-1\">"
-  <> "<h2 class=\"text-2xl font-raleway\">Currently reading</h2>"
-  <> "<div class=\"line-numbers\">"
-  <> "<div class=\"flex items-start my-2\"><span class=\"text-zinc-500 mr-1 select-none\"></span><p class=\"text-zinc-300\">Designing Data-Intensive Applications</p></div>"
-  <> "<div class=\"flex items-start my-2\"><span class=\"text-zinc-500 mr-1 select-none\"></span><p class=\"text-zinc-300\">Zero Trust Networks</p></div>"
-  <> "<div class=\"flex items-start my-2\"><span class=\"text-zinc-500 mr-1 select-none\"></span><p class=\"text-zinc-300\">Real-World Cryptography</p></div>"
-  <> "</div>"
-  <> "</div>"
-  <> "</section>"
-  <> "<section>"
-  <> "<div class=\"flex justify-between items-center mb-8 border-b border-zinc-800 pb-4\"><h2 class=\"text-4xl font-raleway\">Recent Posts</h2><a class=\"text-zinc-500 hover:text-accent animated-underline\" href=\""
+  <> "<section class=\"section\" data-reveal>"
+  <> "<div class=\"section-head\">"
+  <> "<h2>Recent posts</h2>"
+  <> "<a class=\"link-more\" href=\""
   <> base_path
-  <> "/blog\">View all →</a></div>"
-  <> "<div class=\"space-y-6\">"
-  <> render_posts(posts |> list.take(3), 1, render_home_post)
+  <> "/blog\">View all &rarr;</a>"
+  <> "</div>"
+  <> "<div class=\"post-list\">"
+  <> render_posts(posts |> list.take(3), 1, render_blog_post)
   <> "</div>"
   <> "</section>"
+  <> "<div class=\"ascii-wrap\" data-reveal>"
   <> ascii_art
   <> "</div>"
-}
-
-fn render_home_post(post: Post, index: Int) -> String {
-  "<article class=\"border border-zinc-800 rounded-sm p-6 card-hover bg-card/40 backdrop-blur-sm\">"
-  <> "<div class=\"flex items-start\">"
-  <> "<div class=\"text-zinc-500 font-mono mr-4 pt-1 select-none\">"
-  <> formatted_counter(index)
   <> "</div>"
-  <> "<div class=\"flex-1\">"
-  <> "<a href=\""
-  <> post_href(post)
-  <> "\"><h3 class=\"text-2xl font-raleway mb-2 hover:text-blue-400 transition-colors\">"
-  <> escape_html(post.title)
-  <> "</h3></a>"
-  <> "<p class=\"text-zinc-500 mb-3 text-sm font-mono\">"
-  <> format_date(post.date)
-  <> "</p>"
-  <> "<p class=\"text-zinc-400 mb-4\">"
-  <> escape_html(post.description)
-  <> "</p>"
-  <> "<div class=\"flex gap-2 flex-wrap\">"
-  <> render_tags(post.tags)
-  <> "</div>"
-  <> "</div>"
-  <> "</div>"
-  <> "</article>"
 }
 
 fn render_blog_page(posts: List(Post)) -> String {
@@ -313,9 +314,10 @@ fn render_blog_page(posts: List(Post)) -> String {
     description: "A programming blog with Markdown, LaTeX, and code snippets",
     active_path: "/blog",
     highlight: False,
-    content: "<div class=\"max-w-4xl mx-auto\">"
-      <> "<h1 class=\"text-5xl font-raleway mb-10 text-center\">Blog Posts</h1>"
-      <> "<div class=\"space-y-6\">"
+    content: "<div class=\"wrap-narrow\">"
+      <> "<h1 class=\"page-title\">Blog posts</h1>"
+      <> "<p class=\"page-sub\">Notes on cloud architecture, distributed systems, competitive programming, and everything in between.</p>"
+      <> "<div class=\"post-list\">"
       <> render_posts(posts, 1, render_blog_post)
       <> "</div>"
       <> "</div>",
@@ -323,29 +325,24 @@ fn render_blog_page(posts: List(Post)) -> String {
 }
 
 fn render_blog_post(post: Post, index: Int) -> String {
-  "<article class=\"border border-zinc-800 rounded-lg p-6 card-hover hover:bg-zinc-900/50 backdrop-blur-sm transition-colors\">"
-  <> "<div class=\"flex items-start\">"
-  <> "<div class=\"text-zinc-500 font-mono mr-4 pt-1 select-none\">"
-  <> formatted_counter(index)
-  <> "</div>"
-  <> "<div class=\"flex-1\">"
-  <> "<a href=\""
+  "<a class=\"post-card\" data-reveal href=\""
   <> post_href(post)
-  <> "\"><h2 class=\"text-3xl font-raleway mb-2 hover:text-blue-400 transition-colors\">"
+  <> "\"><div class=\"index\">"
+  <> formatted_counter(index)
+  <> "</div><div class=\"post-main\">"
+  <> "<h2 class=\"post-title\">"
   <> escape_html(post.title)
-  <> "</h2></a>"
-  <> "<p class=\"text-zinc-500 mb-3 text-sm\">"
+  <> "</h2>"
+  <> "<div class=\"date\">"
   <> format_date(post.date)
-  <> "</p>"
-  <> "<p class=\"text-zinc-400 mb-4\">"
+  <> "</div>"
+  <> "<div class=\"desc\">"
   <> escape_html(post.description)
-  <> "</p>"
-  <> "<div class=\"flex gap-2 flex-wrap\">"
+  <> "</div>"
+  <> "<div class=\"tags\">"
   <> render_tags(post.tags)
   <> "</div>"
-  <> "</div>"
-  <> "</div>"
-  <> "</article>"
+  <> "</div></a>"
 }
 
 fn render_post_page(post: Post) -> String {
@@ -354,23 +351,25 @@ fn render_post_page(post: Post) -> String {
     description: post.description,
     active_path: "",
     highlight: True,
-    content: "<div class=\"max-w-5xl mx-auto\">"
-      <> "<a class=\"text-zinc-500 hover:text-blue-400 mb-6 inline-block animated-underline\" href=\""
+    content: "<div class=\"wrap-narrow\">"
+      <> "<a class=\"back-link\" href=\""
       <> base_path
-      <> "/blog\">← Back to all posts</a>"
-      <> "<article class=\"container p-1 bg-zinc-900/30\">"
-      <> "<header class=\"mb-8 border-b border-zinc-800 pb-6\">"
-      <> "<h1 class=\"text-3xl font-bold mb-4 gradient-text\">"
+      <> "/blog\">&larr; All posts</a>"
+      <> "<article>"
+      <> "<header class=\"article-head\">"
+      <> "<h1 class=\"article-title\">"
       <> escape_html(post.title)
       <> "</h1>"
-      <> "<p class=\"text-zinc-500 mb-4 font-mono\">"
+      <> "<div class=\"article-meta\">"
+      <> "<span class=\"date\">"
       <> format_date(post.date)
-      <> "</p>"
-      <> "<div class=\"flex gap-2 flex-wrap\">"
+      <> "</span>"
+      <> "<span class=\"tags\">"
       <> render_tags(post.tags)
+      <> "</span>"
       <> "</div>"
       <> "</header>"
-      <> "<div class=\"gap-4 mt-8\">"
+      <> "<div class=\"article-body\">"
       <> render_markdown(post.content)
       <> "</div>"
       <> "</article>"
@@ -384,40 +383,50 @@ fn render_about_page() -> String {
     description: "Learn more about the author of this blog",
     active_path: "/about",
     highlight: False,
-    content: "<div class=\"max-w-4xl mx-auto\">"
-      <> "<div class=\"border border-zinc-800 rounded-sm p-8 bg-zinc-900/30\">"
-      <> "<h1 class=\"text-4xl font-bold mb-6 border-b border-zinc-800 pb-4\">About Me</h1>"
-      <> "<div class=\"line-numbers\">"
-      <> "<div class=\"flex items-start my-4\"><span class=\"text-zinc-500 mr-2 select-none\"></span><p class=\"text-zinc-300\">Welcome to my blog! I&#x27;m an engineer with interests in distributed systems, cloud security, algorithms &amp; data structures, and technology in general.</p></div>"
-      <> "<div class=\"flex items-start my-4\"><span class=\"text-zinc-500 mr-2 select-none\"></span><p class=\"text-zinc-300\">I used to be a competitive programmer in my college days and still have fun doing that in my barely free time.</p></div>"
-      <> "<div class=\"flex items-start my-4\"><span class=\"text-zinc-500 mr-2 select-none\"></span><p class=\"text-zinc-300\">I&#x27;m currently the top 2 solver of my country in Project Euler.</p></div>"
-      <> "<div class=\"flex items-start my-4\"><span class=\"text-zinc-500 mr-2 select-none\"></span><div>"
-      <> "<h2 class=\"text-2xl font-bold mb-3 text-zinc-100\">My Tech Stack</h2>"
-      <> "<p class=\"text-zinc-300 mb-2\">I work with a variety of technologies including:</p>"
-      <> "<ul class=\"text-zinc-300 list-none\">"
-      <> "<li class=\"flex items-center\"><span class=\"text-blue-400 mr-2\">▪</span>Python</li>"
-      <> "<li class=\"flex items-center\"><span class=\"text-blue-400 mr-2\">▪</span>JavaScript/TypeScript</li>"
-      <> "<li class=\"flex items-center\"><span class=\"text-blue-400 mr-2\">▪</span>AWS</li>"
-      <> "<li class=\"flex items-center\"><span class=\"text-blue-400 mr-2\">▪</span>Kubernetes</li>"
-      <> "<li class=\"flex items-center\"><span class=\"text-blue-400 mr-2\">▪</span>And more!</li>"
-      <> "</ul></div></div>"
-      <> "<div class=\"flex items-start my-4\"><span class=\"text-zinc-500 mr-2 select-none\"></span><div>"
-      <> "<h2 class=\"text-2xl font-bold mb-3 text-zinc-100\">Connect with Me</h2>"
-      <> "<p class=\"text-zinc-300 mb-2\">Feel free to reach out to me on social media or check out my work:</p>"
-      <> "<ul class=\"text-zinc-300 list-none\">"
-      <> "<li class=\"flex items-center\"><span class=\"text-blue-400 mr-2\">▪</span><a href=\"https://github.com/HeNeos\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-400 hover:underline\">GitHub</a></li>"
-      <> "<li class=\"flex items-center\"><span class=\"text-blue-400 mr-2\">▪</span><a href=\"https://x.com/_HeNeos\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-400 hover:underline\">Twitter</a></li>"
-      <> "<li class=\"flex items-center\"><span class=\"text-blue-400 mr-2\">▪</span><a href=\"https://www.linkedin.com/in/heneos\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-400 hover:underline\">LinkedIn</a></li>"
-      <> "</ul></div></div>"
-      <> "<div class=\"flex items-start my-8\">"
-      <> "<a class=\"bg-zinc-800 hover:bg-blue-400 hover:text-zinc-900 text-zinc-100 px-4 py-2 rounded-sm transition-colors\" href=\""
+    content: "<div class=\"wrap-narrow\">"
+      <> "<h1 class=\"page-title\">About</h1>"
+      <> "<div class=\"prose\">"
+      <> "<p>Welcome to my blog. I&#x27;m an engineer with interests in distributed systems, cloud security, algorithms &amp; data structures, and technology in general.</p>"
+      <> "<p>I used to be a competitive programmer in my college days and still have fun doing that in my barely free time. I&#x27;m currently the top 2 solver of my country in Project Euler.</p>"
+      <> "<h2>Tech stack</h2>"
+      <> "<p>I work across a range of technologies, including:</p>"
+      <> "<div class=\"stack\">"
+      <> render_chip("Python")
+      <> render_chip("JavaScript / TypeScript")
+      <> render_chip("AWS")
+      <> render_chip("Kubernetes")
+      <> render_chip("And more")
+      <> "</div>"
+      <> "<h2>Connect</h2>"
+      <> "<p>Feel free to reach out on social media or check out my work:</p>"
+      <> "<div class=\"social-list\">"
+      <> "<a href=\"https://github.com/HeNeos\" target=\"_blank\" rel=\"noopener noreferrer\">"
+      <> icon_github()
+      <> "<span>GitHub</span></a>"
+      <> "<a href=\"https://x.com/_HeNeos\" target=\"_blank\" rel=\"noopener noreferrer\">"
+      <> icon_x()
+      <> "<span>X / Twitter</span></a>"
+      <> "<a href=\"https://www.linkedin.com/in/heneos\" target=\"_blank\" rel=\"noopener noreferrer\">"
+      <> icon_linkedin()
+      <> "<span>LinkedIn</span></a>"
+      <> "<a href=\"mailto:he.neos@outlook.com\">"
+      <> icon_mail()
+      <> "<span>Email</span></a>"
+      <> "</div>"
+      <> "</div>"
+      <> "<div class=\"hero-actions\">"
+      <> "<a class=\"btn btn-primary\" href=\""
       <> base_path
-      <> "/blog\">Check out my blog</a>"
-      <> "</div>"
-      <> "</div>"
+      <> "/blog\">Read the blog"
+      <> icon_arrow()
+      <> "</a>"
       <> "</div>"
       <> "</div>",
   )
+}
+
+fn render_chip(label: String) -> String {
+  "<span class=\"tag\">" <> escape_html(label) <> "</span>"
 }
 
 fn render_devlog_page() -> String {
@@ -426,12 +435,11 @@ fn render_devlog_page() -> String {
     description: "My personal devlog",
     active_path: "/devlog",
     highlight: False,
-    content: "<div class=\"max-w-4xl mx-auto\">"
-      <> "<div class=\"border border-zinc-800 rounded-sm p-8 bg-zinc-900/30\">"
-      <> "<h1 class=\"text-4xl font-mono font-bold mb-6 border-b border-zinc-800 pb-2\">Dev Log</h1>"
-      <> "<div class=\"font-mono text-sm space-y-5\">"
+    content: "<div class=\"wrap-narrow\">"
+      <> "<h1 class=\"page-title\">Dev log</h1>"
+      <> "<p class=\"page-sub\">A running list of papers, posts, and tools I&#x27;m working through.</p>"
+      <> "<div class=\"devlog-list\">"
       <> render_devlog_entries(devlog_entries())
-      <> "</div>"
       <> "</div>"
       <> "</div>",
   )
@@ -446,19 +454,19 @@ fn render_devlog_entries(entries: List(DevlogEntry)) -> String {
 }
 
 fn render_devlog_entry(entry: DevlogEntry) -> String {
-  "<div class=\"relative group flex items-center justify-between\">"
-  <> "<div class=\"relative\">"
-  <> "<a class=\"font-bold text-blue-300\" href=\""
+  "<div class=\"devlog-item\">"
+  <> "<div class=\"devlog-main\">"
+  <> "<a class=\"devlog-title\" href=\""
   <> escape_html(entry.url)
-  <> "\">"
+  <> "\" target=\"_blank\" rel=\"noopener noreferrer\">"
   <> escape_html(entry.title)
   <> "</a>"
-  <> "<div class=\" absolute left-0 top-full mt-1 w-80 rounded-md border border-zinc-700 bg-zinc-800 p-2 font-mono text-[11px] text-zinc-300 shadow-lg z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-450 \">"
+  <> "<p class=\"devlog-desc\">"
   <> escape_html(entry.description)
-  <> "<div class=\"text-[9px] text-zinc-500 mt-3 border-t border-zinc-700 pt-1\">Added: "
-  <> escape_html(entry.added_at)
+  <> "</p>"
+  <> "<div class=\"devlog-meta\">Added "
+  <> escape_html(format_short_date(entry.added_at))
   <> render_read_date(entry.read_at)
-  <> "</div>"
   <> "</div>"
   <> "</div>"
   <> "<span class=\""
@@ -471,23 +479,21 @@ fn render_devlog_entry(entry: DevlogEntry) -> String {
 
 fn render_read_date(read_at: Option(String)) -> String {
   case read_at {
-    Some(date) -> "<br>Read: " <> escape_html(format_short_date(date))
+    Some(date) -> " &middot; Read " <> escape_html(format_short_date(date))
     None -> ""
   }
 }
 
 fn devlog_status_class(read_at: Option(String)) -> String {
   case read_at {
-    Some(_) ->
-      "text-xs px-2 py-1 rounded border ml-4 bg-green-700 border-green-600 text-green-200"
-    None ->
-      "text-xs px-2 py-1 rounded border ml-4 bg-zinc-700 border-zinc-600 text-zinc-300"
+    Some(_) -> "chip chip-read"
+    None -> "chip"
   }
 }
 
 fn devlog_status_text(read_at: Option(String)) -> String {
   case read_at {
-    Some(_) -> "Read ✓"
+    Some(_) -> "Read"
     None -> "Unread"
   }
 }
@@ -498,12 +504,12 @@ fn render_not_found_page() -> String {
     description: "A programming blog with Markdown, LaTeX, and code snippets",
     active_path: "",
     highlight: False,
-    content: "<div style=\"font-family:system-ui,&quot;Segoe UI&quot;,Roboto,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;height:100vh;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center\">"
-      <> "<div>"
-      <> "<style>body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}</style>"
-      <> "<h1 class=\"next-error-h1\" style=\"display:inline-block;margin:0 20px 0 0;padding:0 23px 0 0;font-size:24px;font-weight:500;vertical-align:top;line-height:49px\">404</h1>"
-      <> "<div style=\"display:inline-block\"><h2 style=\"font-size:14px;font-weight:400;line-height:49px;margin:0\">This page could not be found.</h2></div>"
-      <> "</div>"
+    content: "<div class=\"wrap empty-state\">"
+      <> "<span class=\"empty-code\">404</span>"
+      <> "<p>This page could not be found.</p>"
+      <> "<a class=\"btn btn-ghost\" href=\""
+      <> base_path
+      <> "/\">Back home</a>"
       <> "</div>",
   )
 }
@@ -515,6 +521,10 @@ fn render_not_found_page() -> String {
 fn post_href(post: Post) -> String {
   base_path <> "/blog/" <> escape_html(post.slug)
 }
+
+const favicon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c11'/%3E%3Crect x='1' y='1' width='30' height='30' rx='6.5' fill='none' stroke='%233b82f6' stroke-opacity='.5'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' fill='%233b82f6' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E"
+
+const fonts_href = "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=VT323&display=swap"
 
 fn render_document(
   title title: String,
@@ -534,9 +544,31 @@ fn render_document(
   <> "<meta name=\"description\" content=\""
   <> escape_html(description)
   <> "\">"
+  <> "<meta name=\"color-scheme\" content=\"dark\">"
+  <> "<meta name=\"theme-color\" content=\"#0a0c11\">"
+  <> "<meta property=\"og:type\" content=\"website\">"
+  <> "<meta property=\"og:title\" content=\""
+  <> escape_html(title)
+  <> "\">"
+  <> "<meta property=\"og:description\" content=\""
+  <> escape_html(description)
+  <> "\">"
+  <> "<meta property=\"og:site_name\" content=\"HeNeos blog\">"
+  <> "<meta name=\"twitter:card\" content=\"summary\">"
+  <> "<link rel=\"icon\" href=\""
+  <> favicon
+  <> "\">"
+  <> "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">"
+  <> "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>"
+  <> "<link rel=\"stylesheet\" href=\""
+  <> fonts_href
+  <> "\">"
   <> "<link rel=\"stylesheet\" href=\""
   <> base_path
   <> "/styles.css\">"
+  <> "<link rel=\"stylesheet\" href=\""
+  <> base_path
+  <> "/theme.css\">"
   <> "<link rel=\"stylesheet\" href=\""
   <> base_path
   <> "/katex.min.css\">"
@@ -545,40 +577,53 @@ fn render_document(
       "<link rel=\"stylesheet\" href=\"" <> base_path <> "/github-dark.css\">"
     False -> ""
   }
+  <> "<script>document.documentElement.classList.add(\"js\")</script>"
   <> "</head>"
-  <> "<body class=\"bg-zinc-950 text-zinc-100 min-h-screen\">"
+  <> "<body>"
+  <> "<div class=\"progress\" aria-hidden=\"true\"><span></span></div>"
   <> render_header(active_path)
-  <> "<main class=\"mx-auto px-4 py-6 max-w-5xl\">"
+  <> "<main>"
   <> content
   <> "</main>"
   <> render_footer()
   <> "<script src=\""
   <> base_path
   <> "/navigation.js\" defer></script>"
+  <> "<script src=\""
+  <> base_path
+  <> "/enhance.js\" defer></script>"
   <> "</body>"
   <> "</html>"
 }
 
 fn render_header(active_path: String) -> String {
-  "<header class=\"p-6 border-b border-zinc-800\">"
-  <> "<div class=\"max-w-6xl mx-auto\">"
-  <> "<div class=\"mb-10\">"
-  <> "<h1 class=\"text-6xl font-raleway tracking-tighter mb-2 text-center\">HeNeos blog</h1>"
-  <> "<p class=\"text-xl font-mono text-center text-zinc-500 mb-1\">Josue H. @ JP Morgan Chase</p>"
-  <> "<p class=\"text-xl font-raleway text-center text-zinc-600\">HeNeos</p>"
-  <> "</div>"
-  <> "<div class=\"flex justify-center space-x-20 mb-4\">"
-  <> "<a target=\"_blank\" class=\"text-base font-raleway text-zinc-500 hover:text-accent animated-underline\" href=\"https://github.com/HeNeos\">GitHub</a>"
-  <> "<a target=\"_blank\" class=\"text-base font-raleway text-zinc-500 hover:text-accent animated-underline\" href=\"https://www.linkedin.com/in/heneos\">LinkedIn</a>"
-  <> "<a class=\"text-base font-raleway text-zinc-500 hover:text-accent animated-underline\" href=\"mailto:he.neos@outlook.com\">Email</a>"
-  <> "</div>"
+  "<header class=\"site-header\">"
+  <> "<div class=\"wrap header-inner\">"
+  <> "<a class=\"brand\" href=\""
+  <> base_path
+  <> "\">"
+  <> "<span class=\"brand-name\">HeNeos</span>"
+  <> "<span class=\"brand-tag\">Josue H. &middot; Cloud Solutions Architect</span>"
+  <> "</a>"
+  <> "<div class=\"header-links\">"
   <> render_navigation(active_path)
+  <> "<div class=\"socials\">"
+  <> icon_link("https://github.com/HeNeos", "GitHub", True, icon_github())
+  <> icon_link(
+    "https://www.linkedin.com/in/heneos",
+    "LinkedIn",
+    True,
+    icon_linkedin(),
+  )
+  <> icon_link("mailto:he.neos@outlook.com", "Email", False, icon_mail())
+  <> "</div>"
+  <> "</div>"
   <> "</div>"
   <> "</header>"
 }
 
 fn render_navigation(active_path: String) -> String {
-  "<div class=\"text-xl font-raleway flex flex-col sm:flex-row justify-center gap-4 border-t border-zinc-800 pt-4\">"
+  "<nav class=\"nav\" aria-label=\"Primary\">"
   <> render_navigation_item("Home", "/", "ha", active_path == "/")
   <> render_navigation_item("Blog", "/blog", "hb", active_path == "/blog")
   <> render_navigation_item("About", "/about", "hc", active_path == "/about")
@@ -588,7 +633,7 @@ fn render_navigation(active_path: String) -> String {
     "hd",
     active_path == "/devlog",
   )
-  <> "</div>"
+  <> "</nav>"
 }
 
 fn render_navigation_item(
@@ -597,20 +642,18 @@ fn render_navigation_item(
   shortcut: String,
   is_active: Bool,
 ) -> String {
-  "<a class=\"block\" href=\""
+  "<a class=\"nav-link\" href=\""
   <> navigation_href(path)
-  <> "\"><div class=\""
-  <> navigation_item_class(is_active)
-  <> "\"><span>"
-  <> label
-  <> "</span><span class=\"ml-6 text-sm font-mono text-zinc-600"
+  <> "\""
   <> case is_active {
-    True -> " font-bold"
+    True -> " aria-current=\"page\""
     False -> ""
   }
-  <> "\">"
+  <> "><span>"
+  <> label
+  <> "</span><span class=\"key\">"
   <> shortcut
-  <> "</span></div></a>"
+  <> "</span></a>"
 }
 
 fn navigation_href(path: String) -> String {
@@ -620,37 +663,85 @@ fn navigation_href(path: String) -> String {
   }
 }
 
-fn navigation_item_class(is_active: Bool) -> String {
-  case is_active {
-    True ->
-      "cursor-pointer px-4 py-2 rounded-md flex items-center justify-between transition-all duration-200 bg-zinc-100 text-zinc-900 scale-105 font-medium shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-    False ->
-      "cursor-pointer px-4 py-2 rounded-md flex items-center justify-between transition-all duration-200 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-100"
+fn icon_link(
+  href: String,
+  label: String,
+  external: Bool,
+  icon: String,
+) -> String {
+  "<a class=\"icon-link\" href=\""
+  <> escape_html(href)
+  <> "\" aria-label=\""
+  <> escape_html(label)
+  <> "\" title=\""
+  <> escape_html(label)
+  <> "\""
+  <> case external {
+    True -> " target=\"_blank\" rel=\"noopener noreferrer\""
+    False -> ""
   }
+  <> ">"
+  <> icon
+  <> "</a>"
+}
+
+fn icon_github() -> String {
+  "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4\"/><path d=\"M9 18c-4.51 2-5-2-7-2\"/></svg>"
+}
+
+fn icon_linkedin() -> String {
+  "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"/><rect width=\"4\" height=\"12\" x=\"2\" y=\"9\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/></svg>"
+}
+
+fn icon_mail() -> String {
+  "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\" rx=\"2\"/><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"/></svg>"
+}
+
+fn icon_x() -> String {
+  "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z\"/></svg>"
+}
+
+fn icon_arrow() -> String {
+  "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg>"
 }
 
 fn render_footer() -> String {
-  "<footer class=\"border-t border-zinc-800 py-6 mt-2\">"
-  <> "<div class=\"container mx-auto px-4 relative h-full\">"
-  <> "<div class=\"grid grid-cols-1 md:grid-cols-2 gap-8\">"
-  <> "<div>"
-  <> "<h3 class=\"text-lg font-semibold text-white mb-4\">Connect</h3>"
-  <> "<div class=\"flex space-x-4\">"
-  <> "<a href=\"https://github.com/HeNeos\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-slate-400 hover:text-white transition-colors\">GitHub</a>"
-  <> "<a href=\"https://x.com/_HeNeos\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-slate-400 hover:text-white transition-colors\">X</a>"
-  <> "<a href=\"https://codeforces.com/profile/HeNeos\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-slate-400 hover:text-white transition-colors\">Codeforces</a>"
-  <> "<a href=\"https://codeforces.com/profile/Ptolemy_314\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-slate-400 hover:text-white transition-colors\">Codeforces old</a>"
+  "<footer class=\"site-footer\">"
+  <> "<div class=\"wrap\">"
+  <> "<div class=\"footer-grid\">"
+  <> "<div class=\"footer-col\">"
+  <> "<span class=\"brand-name\">HeNeos</span>"
+  <> "<p class=\"footer-note\">Writing about distributed systems, cloud architecture, cybersecurity, and algorithms.</p>"
+  <> "</div>"
+  <> "<div class=\"footer-col\">"
+  <> "<h4>Elsewhere</h4>"
+  <> "<div class=\"footer-links\">"
+  <> footer_link("https://github.com/HeNeos", "GitHub")
+  <> footer_link("https://x.com/_HeNeos", "X")
+  <> footer_link("https://codeforces.com/profile/HeNeos", "Codeforces")
+  <> footer_link("mailto:he.neos@outlook.com", "Email")
   <> "</div>"
   <> "</div>"
-  <> "<div>"
-  <> "<h4 class=\"text-lg font-semibold text-white mb-4\">Project Euler</h4>"
+  <> "<div class=\"footer-col\">"
+  <> "<h4>Project Euler</h4>"
+  <> "<div class=\"footer-links\">"
   <> "<a href=\"https://projecteuler.net/profile/HeNeos.png\" target=\"_blank\" rel=\"noopener noreferrer\">"
-  <> "<img src=\"https://projecteuler.net/profile/HeNeos.png\" alt=\"Project Euler Profile\" class=\" h-auto max-h-10 rounded-sm object-contain\">"
+  <> "<img src=\"https://projecteuler.net/profile/HeNeos.png\" alt=\"Project Euler profile for HeNeos\" loading=\"lazy\">"
   <> "</a>"
   <> "</div>"
   <> "</div>"
   <> "</div>"
+  <> "<div class=\"footer-bottom\"><span>&copy; HeNeos</span><span>Built with Gleam</span></div>"
+  <> "</div>"
   <> "</footer>"
+}
+
+fn footer_link(href: String, label: String) -> String {
+  "<a href=\""
+  <> escape_html(href)
+  <> "\" target=\"_blank\" rel=\"noopener noreferrer\">"
+  <> escape_html(label)
+  <> "</a>"
 }
 
 fn escape_html(value: String) -> String {
