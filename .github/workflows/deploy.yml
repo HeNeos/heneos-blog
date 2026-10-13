@@ -2,30 +2,37 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main] # or master
+    branches: [main]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # This gives the action permission to write to repository contents
+      contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      
+        uses: actions/checkout@v4
+
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-      
+          node-version: 20
+          cache: npm
+
+      - name: Setup Gleam
+        uses: erlef/setup-beam@v1
+        with:
+          gleam-version: "1.18.1"
+          otp-version: "27"
+
       - name: Install dependencies
-        run: npm install
-      
+        run: npm ci
+
       - name: Build
         run: npm run build
-      
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: out    # The folder the action should deploy
-          token: ${{ secrets.DEPLOY_TOKEN }}  # Use your secret token
+          folder: out
+          token: ${{ secrets.DEPLOY_TOKEN }}
