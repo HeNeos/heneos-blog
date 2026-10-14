@@ -1243,40 +1243,24 @@ main {
 .ascii-wrap {
   margin-top: 80px;
   padding-block: 32px;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
   mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
   /* The ASCII flourish is ~70k glyphs; skip rendering it while it is
      off-screen so it never costs anything during normal scrolling. */
   content-visibility: auto;
   contain-intrinsic-size: auto 420px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-strong) transparent;
-}
-
-.ascii-wrap::-webkit-scrollbar {
-  height: 6px;
-  background-color: transparent;
-}
-
-.ascii-wrap::-webkit-scrollbar-thumb {
-  background-color: var(--border-strong);
-  border-radius: 3px;
 }
 
 .ascii-wrap .ascii-art {
   opacity: 0.45;
   transition: opacity 0.4s ease;
-  font-size: clamp(0.32rem, 0.9vw, 0.5rem);
-  line-height: clamp(0.95, 1.2vw, 1.2);
-  width: max-content;
-  min-width: 100%;
+  font-size: 0.5rem;
+  line-height: 1.2;
 }
 
 .ascii-wrap:hover .ascii-art {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* ----------------------------------------------------------------------- */
@@ -1556,6 +1540,11 @@ main {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .ascii-wrap .ascii-art {
+    font-size: 0.35rem;
+    line-height: 1.25;
+  }
 }
 
 @media (max-width: 720px) {
@@ -1600,9 +1589,9 @@ main {
     padding: 18px;
   }
 
-  .ascii-wrap {
-    margin-top: 60px;
-    padding-block: 24px;
+  .ascii-wrap .ascii-art {
+    font-size: 0.3rem;
+    line-height: 1.25;
   }
 }
 
@@ -1632,13 +1621,12 @@ main {
   }
 
   .ascii-wrap .ascii-art {
-    font-size: 0.28rem;
-    line-height: 1.15;
+    font-size: 0.16rem;
+    line-height: 1.25;
   }
 }
 
 @media (max-width: 560px) {
-
   .wrap,
   .wrap-narrow {
     padding-inline: 18px;
@@ -1688,6 +1676,16 @@ main {
 
   .term-prompt {
     font-size: 1.04rem;
+  }
+
+  .ascii-wrap {
+    margin-top: 30px;
+    padding-block: 20px;
+  }
+
+  .ascii-wrap .ascii-art {
+    font-size: 0.2rem;
+    line-height: 1.25;
   }
 }
 
