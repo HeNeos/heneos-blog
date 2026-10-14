@@ -1710,11 +1710,12 @@ video {
   width: max-content;
   max-width: 100%;
   margin: 0 auto;
+  overflow-x: auto;
   font-size: 0.5rem;
   line-height: 1.2;
   color: #9474d8;
   text-align: left;
-  white-space: pre;
+  white-space: normal;
 }
 
 .ascii-art>div {
